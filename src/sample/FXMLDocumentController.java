@@ -16,6 +16,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.util.Duration;
 
 import java.time.LocalTime;
@@ -32,11 +33,17 @@ public class FXMLDocumentController {
 
   @FXML
   private  Label label_to_show_current_time;
+  @FXML
+  private TextField user_desired_alarm_time;
+
+  //String  UserDesiredAlarmTime =  user_desired_alarm_time.getText();
+
 
 
 
   @FXML
   public void  initialize() {
+
     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a", Locale.US);
 
     //label_to_show_current_time.textProperty().bind(bindToTime());

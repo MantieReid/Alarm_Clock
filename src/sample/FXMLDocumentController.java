@@ -1,11 +1,6 @@
 package sample;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.FormatStyle;
-import java.util.Calendar;
+
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,23 +17,37 @@ import javafx.util.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 public class FXMLDocumentController {
 
-  //String date = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
-
-
-  //private static DateTimeFormatter SHORT_TIME_FORMATTER =       DateTimeFormatter.ofPattern("HH:mm:ss");
-
+  @FXML
+  Button set_alarm_button;
 
   @FXML
-  private  Label label_to_show_current_time;
+  TextField user_desired_alarm_time;
+
   @FXML
-  private TextField user_desired_alarm_time;
-
-  //String  UserDesiredAlarmTime =  user_desired_alarm_time.getText();
+  Label  label_to_show_current_time;
 
 
+
+
+  public  void Handle_button_click_for_set_alarm_button() {
+
+    user_desired_alarm_time.getText();
+    System.out.println(user_desired_alarm_time.getText());
+
+
+
+
+  }
 
 
   @FXML
@@ -55,12 +64,14 @@ public class FXMLDocumentController {
 
     }),
       new KeyFrame(Duration.seconds(1))
-      );
+    );
 
     clock.setCycleCount(Animation.INDEFINITE);
     clock.play();
 
 
   }
+
+
 
 }

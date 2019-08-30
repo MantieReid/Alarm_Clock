@@ -85,7 +85,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="92.0" text="Set Alarm" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="set_alarm_button" mnemonicParsing="false" onAction="#Handle_button_click_for_set_alarm_button" prefHeight="31.0" prefWidth="92.0" text="Set Alarm" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                   <Label fx:id="label_to_show_current_time" alignment="CENTER" prefHeight="27.0" prefWidth="124.0" style="&#10;" text="Current Time:" textAlignment="CENTER" wrapText="false" GridPane.columnIndex="1">
                      <font>
                         <Font size="18.0" />
@@ -99,7 +99,7 @@
                         <Insets right="-65.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" text="Set Alarm" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="stop_alarm" mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" text="stop Alarm" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
       </children>

@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 import java.text.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,15 +53,28 @@ public class FXMLDocumentController {
 
 
 
-  public  void Handle_button_click_for_set_alarm_button() {
+  public  void Handle_button_click_for_set_alarm_button() throws ParseException {
 
-    String selected_hour = user_hour_combo_box.getValue().toString();
-    String selected_minute = user_minute_combo_box.getValue().toString();
+    String selected_hour = user_hour_combo_box.getValue().toString(); // takes the current value of what the user selected and puts it in a string.
+    String selected_minute = user_minute_combo_box.getValue().toString(); // takes the current value of what the user selected and puts it in a string.
+    String selected_amorpm = user_amorpm_combo_box.getValue().toString(); // takes the current value of what the user selected and puts it in a string.
     System.out.println(selected_hour);
     System.out.println("selected minute is" + selected_minute);
+    System.out.println("user has selected PM/AM " + selected_amorpm);
     //Populate options for the comboBox.
 
+    DateFormat df = new SimpleDateFormat("M/dd/yy", Locale.US);
+    Date date = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("M/dd/yyy");
+    String nowdate = formatter.format(date);
+    String DatePlusUserAlarm = nowdate + " " + selected_hour + ":" +selected_minute + " " + selected_amorpm;
 
+    String selected_user_alarm_time = DatePlusUserAlarm;
+    DateFormat df2 = new SimpleDateFormat("M/dd/yyy hh:mm a", Locale.US);
+    Date dateuseralarmtime;
+    dateuseralarmtime = df2.parse(selected_user_alarm_time);
+    String finaldatealarmtime = df2.format(dateuseralarmtime);
+    System.out.println(finaldatealarmtime);
 
     //user_alarm_time_inputted.setText(usereneteredtime);
 

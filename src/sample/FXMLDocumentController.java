@@ -15,13 +15,13 @@ import javafx.util.Duration;
 
 import java.text.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
@@ -46,35 +46,53 @@ public class FXMLDocumentController {
   ComboBox user_amorpm_combo_box;
 
 
-
   @FXML
   Label  label_to_show_current_time;
 
 
+  private static class MyTimeTask extends TimerTask
+  {
 
+    public void run()
+    {
+      System.out.println("is this working?");
+    }
+  }
 
   public  void Handle_button_click_for_set_alarm_button() throws ParseException {
 
     String selected_hour = user_hour_combo_box.getValue().toString(); // takes the current value of what the user selected and puts it in a string.
     String selected_minute = user_minute_combo_box.getValue().toString(); // takes the current value of what the user selected and puts it in a string.
     String selected_amorpm = user_amorpm_combo_box.getValue().toString(); // takes the current value of what the user selected and puts it in a string.
-    System.out.println(selected_hour);
-    System.out.println("selected minute is" + selected_minute);
-    System.out.println("user has selected PM/AM " + selected_amorpm);
+    System.out.println(selected_hour); // prints out the selected hour by the user
+    System.out.println("selected minute is" + selected_minute); // prints out the selected minute
+    System.out.println("user has selected PM/AM " + selected_amorpm); // prints out the selected am/pm by the user.
     //Populate options for the comboBox.
 
-    DateFormat df = new SimpleDateFormat("M/dd/yy", Locale.US);
-    Date date = new Date();
-    SimpleDateFormat formatter = new SimpleDateFormat("M/dd/yyy");
-    String nowdate = formatter.format(date);
-    String DatePlusUserAlarm = nowdate + " " + selected_hour + ":" +selected_minute + " " + selected_amorpm;
+    DateFormat df = new SimpleDateFormat("M/dd/yy", Locale.US); //format to be used for the date.
+    Date date = new Date(); // declare new date
 
-    String selected_user_alarm_time = DatePlusUserAlarm;
-    DateFormat df2 = new SimpleDateFormat("M/dd/yyy hh:mm a", Locale.US);
-    Date dateuseralarmtime;
-    dateuseralarmtime = df2.parse(selected_user_alarm_time);
+    SimpleDateFormat formatter = new SimpleDateFormat("M/dd/yyy"); //declare new date format
+    String nowdate = formatter.format(date); // format the current date to the desired format
+    String DatePlusUserAlarm = nowdate + " " + selected_hour + ":" +selected_minute + " " + selected_amorpm; // puts the user selected minute, hour, am/pm into one string.
+
+    String selected_user_alarm_time = DatePlusUserAlarm; // puts the user alarm into one
+    DateFormat df2 = new SimpleDateFormat("M/dd/yyy hh:mm a", Locale.US); // new date format declared
+    Date dateuseralarmtime;  //new date variable
+    dateuseralarmtime = df2.parse(selected_user_alarm_time); // parse selected user alarm time into one date format. Stored in a variable.
+
+    System.out.println("dateuseralarmtime is  "  + dateuseralarmtime);
+
     String finaldatealarmtime = df2.format(dateuseralarmtime);
-    System.out.println(finaldatealarmtime);
+    System.out.println(finaldatealarmtime); //prints out the user selected time into a string
+    user_alarm_time_inputted.setText(finaldatealarmtime); //sets the text to the user selected alarm time.
+
+    Timer timer = new Timer(); //created a new timer
+
+    timer.schedule(new MyTimeTask(), dateuseralarmtime);
+
+
+    //fina
 
     //user_alarm_time_inputted.setText(usereneteredtime);
 

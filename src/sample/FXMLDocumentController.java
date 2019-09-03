@@ -13,6 +13,7 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.text.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -29,6 +30,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import javax.sound.sampled.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+
 public class FXMLDocumentController {
 
   @FXML
@@ -50,12 +56,25 @@ public class FXMLDocumentController {
   Label  label_to_show_current_time;
 
 
-  private static class MyTimeTask extends TimerTask
+  public  void playsound()   {
+    try {
+      AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("alarm-clock-sound.wav"));
+      Clip clip = AudioSystem.getClip();
+      clip.open(audioInputStream);
+      clip.start();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+
+  }
+
+  private  class MyTimeTask extends TimerTask
   {
 
     public void run()
     {
       System.out.println("is this working?");
+      playsound();
     }
   }
 

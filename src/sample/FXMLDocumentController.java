@@ -108,7 +108,19 @@ public class FXMLDocumentController {
 
     Timer timer = new Timer(); //created a new timer
 
+    Date currentdateandtime = new Date(); //this contains the current date and time.
+    SimpleDateFormat formatterforcurrentdate = new SimpleDateFormat("M/dd/yy hh:mm a",Locale.US);
+
+    if (currentdateandtime.after(dateuseralarmtime)) {
+      System.out.println("The chosen date is after the current date and time. Please choose a new date. ");
+      finaldatealarmtime = null;
+      user_alarm_time_inputted.setText("please choose a diffrent time.");
+      return;
+    }
+
+
     timer.schedule(new MyTimeTask(), dateuseralarmtime);
+
 
 
     //fina
@@ -148,6 +160,7 @@ public class FXMLDocumentController {
 
       //String timenowstring = timenow.toString();
       label_to_show_current_time.setText(displaytime);
+
 
     }),
       new KeyFrame(Duration.seconds(1))
